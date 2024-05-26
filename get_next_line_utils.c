@@ -58,7 +58,7 @@ char	*new_line(char *text, int length, int fd)
 	{
 		s2 = (char *)(malloc(BUFFER_SIZE + 1 * sizeof(char)));
 //reservo sitio para seguir leyendo
-		length = length + read(fd, s2, length);
+		length = length + read(fd, s2, BUFFER_SIZE); ==> PORQUE read() necesita el BUFFER_SIZE
 		s2[length] = '\0';
 //actualizo length
 		s3 = ft_strjoin(text, s2, length);
