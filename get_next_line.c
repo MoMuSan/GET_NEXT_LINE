@@ -6,18 +6,17 @@
 /*   By: monmunoz <monmunoz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/16 12:27:10 by monmunoz          #+#    #+#             */
-/*   Updated: 2024/05/26 19:11:53 by monmunoz         ###   ########.fr       */
+/*   Updated: 2024/05/30 18:27:35 by monmunoz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
-#include <string.h>
 
 char	*get_next_line(int fd)
 {
 	char		*buf;
 	int			read_file;
-	static char	*reserved;
+	char		*reserved;
 
 	if (fd == -1 || BUFFER_SIZE <= 0)
 		return (NULL);

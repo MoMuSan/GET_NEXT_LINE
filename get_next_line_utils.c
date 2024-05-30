@@ -6,7 +6,7 @@
 /*   By: monmunoz <monmunoz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/16 13:44:55 by monmunoz          #+#    #+#             */
-/*   Updated: 2024/05/26 19:28:00 by monmunoz         ###   ########.fr       */
+/*   Updated: 2024/05/30 17:15:36 by monmunoz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,12 +37,14 @@ char	*ft_strjoin(const char *s1, const char *s2, int size)
 	char	*s3;
 
 	s3 = (char *)malloc((size + 1) * sizeof(char));
+	s3[0] = '\0';
 	if (!s3)
 		return (NULL);
 	s3 = ft_strcat(s3, s1);
 	s3 = ft_strcat(s3, s2);
 	return ((char *)s3);
 }
+char	*ft_strjoin(const char *s1, const char *s2, int size);
 
 char	*new_line(char *text, int length, int fd)
 {
@@ -53,21 +55,16 @@ char	*new_line(char *text, int length, int fd)
 	count = 0;
 	while (text[count] != '\n' && count < length)
 		count++;
-	
 	if (text[count] != '\n')
 	{
-		//printf("Entra\n");
 		s2 = (char *)(malloc((BUFFER_SIZE + 1) * sizeof(char)));
 		s2[BUFFER_SIZE] = '\0';
 		length = length + read(fd, s2, BUFFER_SIZE);
 		s3 = ft_strjoin(text, s2, length);
 		free (s2);
-		//printf("%d %p\n", length, text);
-		//free(text);
-		//printf("Hola\n");
+		free(text);
 		text = new_line(s3, length, fd);
 	}
-	printf("Entra2\n");
 	return (text);
 }
 
