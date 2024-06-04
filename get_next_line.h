@@ -6,7 +6,7 @@
 /*   By: monmunoz <monmunoz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/16 13:45:19 by monmunoz          #+#    #+#             */
-/*   Updated: 2024/05/25 21:28:50 by monmunoz         ###   ########.fr       */
+/*   Updated: 2024/06/02 13:40:06 by monmunoz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@
 # include <fcntl.h>
 
 # ifndef BUFFER_SIZE
-#define BUFFER_SIZE 15
+# define BUFFER_SIZE 15
 # endif
 
 char	*get_next_line(int fd);

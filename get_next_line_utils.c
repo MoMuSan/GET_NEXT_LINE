@@ -6,11 +6,12 @@
 /*   By: monmunoz <monmunoz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/16 13:44:55 by monmunoz          #+#    #+#             */
-/*   Updated: 2024/05/30 17:15:36 by monmunoz         ###   ########.fr       */
+/*   Updated: 2024/06/04 21:12:04 by monmunoz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
+#include <string.h>
 
 static char	*ft_strcat(char *dest, const char *src)
 {
@@ -20,9 +21,7 @@ static char	*ft_strcat(char *dest, const char *src)
 	i = 0;
 	j = 0;
 	while (dest[i] != '\0')
-	{
 		i++;
-	}
 	while (src[j] != '\0')
 	{
 		dest[i + j] = src[j];
@@ -44,11 +43,26 @@ char	*ft_strjoin(const char *s1, const char *s2, int size)
 	s3 = ft_strcat(s3, s2);
 	return ((char *)s3);
 }
-char	*ft_strjoin(const char *s1, const char *s2, int size);
+
+char	pieces(char *cut, char *text, size_t pos)
+{
+	size_t	i;
+
+	i = 0;
+	if (!cut)
+		return (NULL);
+	while (i < pos)
+	{
+		cut[i] = text[i];
+		i++;
+	}
+	return (cut);
+}
 
 char	*new_line(char *text, int length, int fd)
 {
 	int			count;
+	static char	*v_est;
 	char		*s2;
 	char		*s3;
 
@@ -65,11 +79,7 @@ char	*new_line(char *text, int length, int fd)
 		free(text);
 		text = new_line(s3, length, fd);
 	}
+	v_est = (char *)(malloc(((length - count) + 1) * sizeof(char)));
+	pieces(v_est, &text[count + 1], (size_t)(length - count));
 	return (text);
 }
-
-/*char	*read_line(int fd, char *buf)
-{
-	read (fd, buf, BUFFER_SIZE);
-	return (buf);
-}*/
