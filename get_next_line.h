@@ -6,7 +6,7 @@
 /*   By: monmunoz <monmunoz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/16 13:45:19 by monmunoz          #+#    #+#             */
-/*   Updated: 2024/06/02 13:40:06 by monmunoz         ###   ########.fr       */
+/*   Updated: 2024/06/06 12:47:23 by monmunoz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,5 +23,6 @@
 
 char	*get_next_line(int fd);
 char	*new_line(char *text, int length, int fd);
+char	*pieces(char *cut, char *text, size_t pos);
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: monmunoz <monmunoz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/16 12:27:10 by monmunoz          #+#    #+#             */
-/*   Updated: 2024/06/02 14:27:41 by monmunoz         ###   ########.fr       */
+/*   Updated: 2024/06/06 16:37:43 by monmunoz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@ char	*get_next_line(int fd)
 	char		*buf;
 	int			read_file;
 	char		*reserved;
+	static char	*pick;
 
 	if (fd == -1 || BUFFER_SIZE <= 0)
 		return (NULL);

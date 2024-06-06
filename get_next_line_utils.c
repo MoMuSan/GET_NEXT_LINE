@@ -6,7 +6,7 @@
 /*   By: monmunoz <monmunoz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/16 13:44:55 by monmunoz          #+#    #+#             */
-/*   Updated: 2024/06/04 21:12:04 by monmunoz         ###   ########.fr       */
+/*   Updated: 2024/06/06 17:42:45 by monmunoz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ char	*ft_strjoin(const char *s1, const char *s2, int size)
 	return ((char *)s3);
 }
 
-char	pieces(char *cut, char *text, size_t pos)
+char	*pieces(char *cut, char *text, size_t pos)
 {
 	size_t	i;
 
@@ -56,6 +56,7 @@ char	pieces(char *cut, char *text, size_t pos)
 		cut[i] = text[i];
 		i++;
 	}
+
 	return (cut);
 }
 
@@ -65,6 +66,7 @@ char	*new_line(char *text, int length, int fd)
 	static char	*v_est;
 	char		*s2;
 	char		*s3;
+	char		*clean_line;
 
 	count = 0;
 	while (text[count] != '\n' && count < length)
@@ -79,7 +81,15 @@ char	*new_line(char *text, int length, int fd)
 		free(text);
 		text = new_line(s3, length, fd);
 	}
-	v_est = (char *)(malloc(((length - count) + 1) * sizeof(char)));
-	pieces(v_est, &text[count + 1], (size_t)(length - count));
+	else
+	{
+		v_est = (char *)(malloc(((length - count) + 1) * sizeof(char)));
+		v_est = pieces(v_est, &text[count + 1],((size_t)(length - count)));
+		clean_line = (char *)(malloc((count + 1) * sizeof(char)));
+		clean_line = pieces(clean_line, text, count);
+		clean_line[count] = 0;
+		free(text);
+		text = clean_line;
+	}
 	return (text);
 }
