@@ -6,12 +6,11 @@
 /*   By: monmunoz <monmunoz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/16 13:44:55 by monmunoz          #+#    #+#             */
-/*   Updated: 2024/06/06 17:42:45 by monmunoz         ###   ########.fr       */
+/*   Updated: 2024/06/11 23:23:32 by monmunoz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
-#include <string.h>
 
 static char	*ft_strcat(char *dest, const char *src)
 {
@@ -36,9 +35,9 @@ char	*ft_strjoin(const char *s1, const char *s2, int size)
 	char	*s3;
 
 	s3 = (char *)malloc((size + 1) * sizeof(char));
-	s3[0] = '\0';
 	if (!s3)
 		return (NULL);
+	s3[0] = '\0';
 	s3 = ft_strcat(s3, s1);
 	s3 = ft_strcat(s3, s2);
 	return ((char *)s3);
@@ -56,40 +55,41 @@ char	*pieces(char *cut, char *text, size_t pos)
 		cut[i] = text[i];
 		i++;
 	}
-
 	return (cut);
 }
 
-char	*new_line(char *text, int length, int fd)
+char	*ft_strdup(const char *s1)
 {
-	int			count;
-	static char	*v_est;
-	char		*s2;
-	char		*s3;
-	char		*clean_line;
+	char	*copy;
+	size_t	len;
 
-	count = 0;
-	while (text[count] != '\n' && count < length)
-		count++;
-	if (text[count] != '\n')
+	len = 1;
+	while (s1)
+		len++;
+	copy = malloc(len);
+	if (!copy)
+		return (NULL);
+	ft_strlcpy(copy, s1, len);
+	return (copy);
+}
+
+int	ft_strlcpy(char *dst, const char *src, int dstsize)
+{
+	int	i;
+
+	i = 0;
+	while (i + 1 < dstsize && src[i] != '\0')
 	{
-		s2 = (char *)(malloc((BUFFER_SIZE + 1) * sizeof(char)));
-		s2[BUFFER_SIZE] = '\0';
-		length = length + read(fd, s2, BUFFER_SIZE);
-		s3 = ft_strjoin(text, s2, length);
-		free (s2);
-		free(text);
-		text = new_line(s3, length, fd);
+		dst[i] = src[i];
+		i++;
 	}
-	else
+	if (i < dstsize)
 	{
-		v_est = (char *)(malloc(((length - count) + 1) * sizeof(char)));
-		v_est = pieces(v_est, &text[count + 1],((size_t)(length - count)));
-		clean_line = (char *)(malloc((count + 1) * sizeof(char)));
-		clean_line = pieces(clean_line, text, count);
-		clean_line[count] = 0;
-		free(text);
-		text = clean_line;
+		dst[i] = '\0';
 	}
-	return (text);
+	while (src[i] != '\0')
+	{
+		i++;
+	}
+	return (i);
 }

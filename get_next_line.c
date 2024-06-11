@@ -6,11 +6,45 @@
 /*   By: monmunoz <monmunoz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/16 12:27:10 by monmunoz          #+#    #+#             */
-/*   Updated: 2024/06/06 16:37:43 by monmunoz         ###   ########.fr       */
+/*   Updated: 2024/06/11 23:23:20 by monmunoz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
+
+char	*new_line(char *text, int length, int fd)
+{
+	int			count;
+	static char	*v_est;
+	char		*s2;
+	char		*s3;
+	char		*clean_line;
+
+	count = 0;
+	while (text[count] != '\n' && count < length)
+		count++;
+	if (text[count] != '\n')
+	{
+		s2 = (char *)(malloc((BUFFER_SIZE + 1) * sizeof(char)));
+		s2[BUFFER_SIZE] = '\0';
+		length = length + read(fd, s2, BUFFER_SIZE);
+		s3 = ft_strjoin(text, s2, length);
+		free (s2);
+		free(text);
+		text = new_line(s3, length, fd);
+	}
+	else
+	{
+		v_est = (char *)(malloc(((length - count) + 1) * sizeof(char)));
+		v_est = pieces(v_est, &text[count + 1], ((size_t)(length - count)));
+		clean_line = (char *)(malloc((count + 1) * sizeof(char)));
+		clean_line = pieces(clean_line, text, count);
+		clean_line[count] = 0;
+		free(text);
+		text = clean_line;
+	}
+	return (text);
+}
 
 char	*get_next_line(int fd)
 {
@@ -19,7 +53,7 @@ char	*get_next_line(int fd)
 	char		*reserved;
 	static char	*pick;
 
-	if (fd == -1 || BUFFER_SIZE <= 0)
+	if (fd < 0 || BUFFER_SIZE <= 0)
 		return (NULL);
 	else
 	{
