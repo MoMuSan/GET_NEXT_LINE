@@ -6,33 +6,72 @@
 /*   By: monmunoz <monmunoz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/16 12:27:10 by monmunoz          #+#    #+#             */
-/*   Updated: 2024/06/12 21:52:50 by monmunoz         ###   ########.fr       */
+/*   Updated: 2024/06/14 20:04:52 by monmunoz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
 
+char	*leftover(char *v_est, char *text, int length)
+{
+	char	*temp;
+	printf("Leftover\n");
+	temp = ft_strjoin(v_est, text, length);
+	free(text);
+	free(v_est);
+	text = temp;
+	length = length + ft_strlen(v_est);
+	v_est = NULL;
+	return (temp);
+}
+
+char	*pieces(char *cut, char *text, size_t pos)
+{
+	size_t	i;
+
+	i = 0;
+	if (!cut || !text)
+		return (NULL);
+	while (i < pos)
+	{
+		cut[i] = text[i];
+		i++;
+	}
+	printf("pieces\n");
+	cut[pos] = '\0';
+	return (cut);
+}
+
+char	*divided(char *text, int fd)
+{
+	char	buffer[BUFFER_SIZE + 1];
+	size_t	bytes_read;
+	char	*new_text;
+
+	bytes_read = read(fd, buffer, BUFFER_SIZE);
+	if (bytes_read <= 0)
+		return (text);
+	buffer[bytes_read] = '\0';
+	new_text = ft_strjoin(text, buffer, bytes_read);
+	free(text);
+	printf("DIVIDED\n");
+	return (new_text);
+}
+
 char	*new_line(char *text, int length, int fd)
 {
 	int			count;
 	static char	*v_est;
-	char		*s2;
-	char		*s3;
 	char		*clean_line;
+	char		*temp;
 
 	count = 0;
+	if (v_est)
+		temp = leftover(v_est, text, length);
 	while (text[count] != '\n' && count < length)
 		count++;
 	if (text[count] != '\n')
-	{
-		s2 = (char *)(malloc((BUFFER_SIZE + 1) * sizeof(char)));
-		s2[BUFFER_SIZE] = '\0';
-		length = length + read(fd, s2, BUFFER_SIZE);
-		s3 = ft_strjoin(text, s2, length);
-		free (s2);
-		free(text);
-		text = new_line(s3, length, fd);
-	}
+		text = divided(text, fd);
 	else
 	{
 		v_est = (char *)(malloc(((length - count) + 1) * sizeof(char)));
@@ -40,9 +79,10 @@ char	*new_line(char *text, int length, int fd)
 		clean_line = (char *)(malloc((count + 1) * sizeof(char)));
 		clean_line = pieces(clean_line, text, count);
 		clean_line[count] = 0;
-		free(text);
+		free (text);
 		text = clean_line;
 	}
+	printf("new line\n");
 	return (text);
 }
 
@@ -51,9 +91,8 @@ char	*get_next_line(int fd)
 	char		*buf;
 	int			read_file;
 	char		*reserved;
-	static char	*pick;
 
-	if (fd < 0 || BUFFER_SIZE <= 0)
+	if (fd < 0 || BUFFER_SIZE <= 0 || BUFFER_SIZE > INT_MAX)
 		return (NULL);
 	else
 	{
