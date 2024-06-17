@@ -6,7 +6,7 @@
 /*   By: monmunoz <monmunoz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/16 12:27:10 by monmunoz          #+#    #+#             */
-/*   Updated: 2024/06/17 18:05:19 by monmunoz         ###   ########.fr       */
+/*   Updated: 2024/06/17 21:32:30 by monmunoz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,8 +20,7 @@ char	*leftover(char *v_est, char *text, int length)
 	free(text);
 	text = temp;
 	free(v_est);
-	v_est = NULL;
-	return (temp);
+	return (text);
 }
 
 char	*pieces(char *cut, char *text, size_t pos)
@@ -46,7 +45,7 @@ char	*divided(char *text, int fd, int length)
 	size_t	bytes_read;
 	char	*new_text;
 
-	bytes_read = read(fd, buffer, (BUFFER_SIZE+1));
+	bytes_read = read(fd, buffer, BUFFER_SIZE);
 	if (bytes_read <= 0)
 		return (text);
 	buffer[bytes_read] = '\0';
@@ -66,6 +65,7 @@ char	*new_line(char *text, int length, int fd)
 	{
 		length = length + ft_strlen(v_est);
 		text = leftover(v_est, text, length);
+		v_est = NULL;
 	}
 	while (text[count] != '\n' && count < length)
 		count++;
@@ -77,7 +77,6 @@ char	*new_line(char *text, int length, int fd)
 		v_est = pieces(v_est, &text[count + 1], ((size_t)(length - count)));
 		clean_line = (char *)(malloc((count + 1) * sizeof(char)));
 		clean_line = pieces(clean_line, text, count);
-		clean_line[count] = 0;
 		free (text);
 		text = clean_line;
 	}
