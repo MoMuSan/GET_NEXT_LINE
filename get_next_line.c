@@ -6,7 +6,7 @@
 /*   By: monmunoz <monmunoz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/16 12:27:10 by monmunoz          #+#    #+#             */
-/*   Updated: 2024/06/14 20:04:52 by monmunoz         ###   ########.fr       */
+/*   Updated: 2024/06/17 18:05:19 by monmunoz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,12 +15,11 @@
 char	*leftover(char *v_est, char *text, int length)
 {
 	char	*temp;
-	printf("Leftover\n");
+
 	temp = ft_strjoin(v_est, text, length);
 	free(text);
-	free(v_est);
 	text = temp;
-	length = length + ft_strlen(v_est);
+	free(v_est);
 	v_est = NULL;
 	return (temp);
 }
@@ -37,25 +36,23 @@ char	*pieces(char *cut, char *text, size_t pos)
 		cut[i] = text[i];
 		i++;
 	}
-	printf("pieces\n");
 	cut[pos] = '\0';
 	return (cut);
 }
 
-char	*divided(char *text, int fd)
+char	*divided(char *text, int fd, int length)
 {
 	char	buffer[BUFFER_SIZE + 1];
 	size_t	bytes_read;
 	char	*new_text;
 
-	bytes_read = read(fd, buffer, BUFFER_SIZE);
+	bytes_read = read(fd, buffer, (BUFFER_SIZE+1));
 	if (bytes_read <= 0)
 		return (text);
 	buffer[bytes_read] = '\0';
-	new_text = ft_strjoin(text, buffer, bytes_read);
+	new_text = ft_strjoin(text, buffer, (bytes_read + length));
 	free(text);
-	printf("DIVIDED\n");
-	return (new_text);
+	return (new_line(new_text, (bytes_read + length), fd));
 }
 
 char	*new_line(char *text, int length, int fd)
@@ -63,15 +60,17 @@ char	*new_line(char *text, int length, int fd)
 	int			count;
 	static char	*v_est;
 	char		*clean_line;
-	char		*temp;
 
 	count = 0;
-	if (v_est)
-		temp = leftover(v_est, text, length);
+	if (v_est != NULL)
+	{
+		length = length + ft_strlen(v_est);
+		text = leftover(v_est, text, length);
+	}
 	while (text[count] != '\n' && count < length)
 		count++;
 	if (text[count] != '\n')
-		text = divided(text, fd);
+		text = divided(text, fd, length);
 	else
 	{
 		v_est = (char *)(malloc(((length - count) + 1) * sizeof(char)));
@@ -82,7 +81,6 @@ char	*new_line(char *text, int length, int fd)
 		free (text);
 		text = clean_line;
 	}
-	printf("new line\n");
 	return (text);
 }
 
