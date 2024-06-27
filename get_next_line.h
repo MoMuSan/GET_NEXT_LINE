@@ -6,7 +6,7 @@
 /*   By: monmunoz <monmunoz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/16 13:45:19 by monmunoz          #+#    #+#             */
-/*   Updated: 2024/06/17 21:35:52 by monmunoz         ###   ########.fr       */
+/*   Updated: 2024/06/26 18:41:42 by monmunoz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,11 +25,11 @@
 # endif
 
 char			*get_next_line(int fd);
-char			*new_line(char *text, int length, int fd);
-static char		*ft_strcat(char *dest, const char *src);
-char			*ft_strjoin(char *s1, const char *s2, int size);
-char			*pieces(char *cut, char *text, size_t pos);
-char			*divided(char *text, int fd, int lenght);
-size_t			ft_strlen(const char *s);
-char			*leftover(char *v_est, char *text, int length);
+char			*new_line(char *buf, size_t read_file, int fd);
+char	        *ft_strchr(char *s, int c);
+size_t	        ft_strlen(char *s);
+void	        *ft_memmove(void *dst, const void *src, size_t len);
+void            *ft_memcpy(void *dst, const void *src, size_t n);
+//static char		*ft_strcat(char *dest, const char *src);
+//char			*ft_strjoin(char *s1, const char *s2, int size);
 #endif

@@ -1,14 +1,38 @@
-Lorem ipsum dolor sit amet, consectetur adipiscing elit. 
-Maecenas quis hendrerit metus. In laoreet suscipit blandit.
-Proin augue eros, consectetur ut erat sit amet, mollis dictum nibh. Pellentesque efficitur nisi ligula, nec commodo ligula porta eget. 
-In rhoncus viverra diam, pretium pretium ipsum ornare non. 
-Aliquam rhoncus ligula a dolor pellentesque, nec pulvinar neque dictum. 
-Nunc lacinia semper leo, quis ornare augue convallis in. 
-Nullam suscipit aliquet urna ac porta.
-Cras nec arcu tortor. 
-Nam condimentum a leo non aliquam. 
-Nam condimentum tempor enim, ut commodo elit molestie tristique.
-Maecenas ac sem tempor, euismod magna facilisis, pharetra neque. 
-Suspendisse vitae neque vitae ante aliquet ullamcorper ut vel nisi. 
-Etiam sodales odio in scelerisque cursus. Pellentesque non dignissim eros. 
-Integer commodo consectetur facilisis. Aliquam dignissim bibendum consequat.
+Lorem ipsum dolor sit am*et, consectetur adipiscing elit.
+Cras nec arcu tortor. Nam condimentum a leo non aliquam. Nam condimentum tempor enim, ut commodo elit molestie tristique. Maecenas ac sem tempor, euismod magna facilisis, pharetra neque. Suspendisse vitae neque vitae ante aliquet ullamcorper ut vel nisi. Etiam sodales odio in scelerisque cursus. Pellentesque non dignissim eros. Integer commodo consectetur facilisis. Aliquam dignissim bibendum consequat. Nunc quis mi tristique, placerat felis vel, condimentum urna. Vestibulum aliquet pellentesque lacus eget facilisis. Pellentesque vitae pellentesque orci. Fusce consequat dolor sed magna aliquet, sed luctus massa mattis.
+Vestibulum dictum leo varius urna vulputate iaculis. Vestibulum imperdiet consectetur libero, eget dapibus massa dapibus ac. In lorem velit, tempus in vulputate ut, placerat nec ex. Maecenas quis venenatis dui, non facilisis leo.
+Nam auctor ut arcu sit amet molestie. Sed sed tincidunt nisl, at vestibulum ex. Nulla rhoncus, mi non eleifend bibendum, sem dui faucibus odio, in accumsan dui neque sit amet dolor. Phasellus facilisis purus purus, sed commodo urna finibus non.
+Fusce ultricies accumsan lorem ut ultrices. Suspendisse dictum iaculis ipsum, et condimentum orci condimentum ac. Nunc vestibulum lorem sed magna convallis porta. Curabitur eu dignissim nibh, sed efficitur lacus.
+Maecenas efficitur nisi quis tortor venenatis, at pellentesque nibh facilisis. Vestibulum augue dolor, tincidunt ut ullamcorper tempor, consectetur id felis. Pellentesque ut tellus blandit, tincidunt nibh ut, efficitur est.
+Mauris commodo ultrices vestibulum. Nulla at magna id odio vehicula semper. Maecenas et consequat magna, eget consectetur neque. Maecenas tristique lacus in nulla posuere, ac dapibus urna hendrerit. Mauris sed tellus sapien. Fusce pulvinar scelerisque augue, ut venenatis leo porta non. Donec non ligula id est rutrum auctor vitae sed odio
+Morbi vitae aliquam magna. Cras vehicula, dui sed suscipit iaculis, mauris libero aliquet eros, at egestas risus enim a urna.
+Morbi porttitor tortor erat, et cursus velit ullamcorper finibus. 
+Sed semper lacus dolor, nec tristique purus sagittis et.
+Praesent placerat felis cursus ipsum malesuada ornare.
+Nulla ac mauris sed dui convallis elementum ut quis arcu.
+Quisque euismod dolor id purus pretium fermentum.
+Ut consequat dui in vulputate tincidunt.
+Aliquam porta enim nec odio hendrerit pretium. 
+Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas.
+
+
+
+char *strchr(const char *p, int ch)
+{
+	char c;
+
+	c = ch;
+	for (;; ++p) {
+		if (*p == c)
+			return ((char *)p);
+		if (*p == '\0')
+			return (NULL);
+	}
+}
+c = ch;
+	for (;; ++p) {
+		if (*p == c)
+			return ((char *)p);
+		if (*p == '\0')
+			return (NULL);
+	}

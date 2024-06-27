@@ -1,9 +1,0 @@
-char *get_next_line(int fd); 
-open txt eso es en  el main
-read one line at a time searching \n : 
-    {
-        while (buf[line] != '\n' && line < read_file)
-			line++;
-    }
-print the line
-if empty or an error occurred return NULL
