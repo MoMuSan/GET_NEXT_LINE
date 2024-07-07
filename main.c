@@ -6,7 +6,7 @@
 /*   By: monmunoz <monmunoz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/26 12:14:31 by monmunoz          #+#    #+#             */
-/*   Updated: 2024/06/27 18:22:21 by monmunoz         ###   ########.fr       */
+/*   Updated: 2024/07/07 16:52:51 by monmunoz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,8 +17,31 @@
 #include <string.h>
 #include "get_next_line.h"
 
-//char	*get_next_line(int fd);
+#include <stdio.h>
+#include <fcntl.h>
 
+/*int main(void) //https://medium.com/@lannur-s/gnl-c3cff1ee552b
+{
+  int   fd;
+  char  *next_line;
+  int   count;
+
+  count = 0;
+  fd = open("lot.txt", O_RDONLY);
+  while (count < 3)
+    {
+      next_line = get_next_line(fd);
+      if (next_line == NULL)
+        break ;
+      count++;
+// printf("[HELLO %d]:%s\n", count, next_line);
+      next_line = NULL;
+    }
+  close(fd);
+  return (0);
+}*/
+
+char	*get_next_line(int fd);
 int	main(void)
 {
 	int		open_file;
@@ -26,13 +49,13 @@ int	main(void)
 
 	open_file = open ("lot.txt", O_RDONLY);
 	tr = get_next_line(open_file);
-	printf("TEST 1 %s TEST--", tr);
+	printf("// %s ", tr);
 	free (tr);
 	tr = get_next_line(open_file);
-	printf("TEST 2 %s  --", tr);
+	printf("// %s  ", tr);
 	free (tr);
 	tr = get_next_line(open_file);
-	printf("TEST 3 %s --", tr);
+	printf("// %s ", tr);
 	free (tr);
 	return (0);
 }
