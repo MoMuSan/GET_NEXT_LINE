@@ -6,7 +6,7 @@
 /*   By: monmunoz <monmunoz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/26 12:14:31 by monmunoz          #+#    #+#             */
-/*   Updated: 2024/07/07 16:52:51 by monmunoz         ###   ########.fr       */
+/*   Updated: 2024/07/10 17:23:51 by monmunoz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,12 +51,12 @@ int	main(void)
 	tr = get_next_line(open_file);
 	printf("// %s ", tr);
 	free (tr);
-	tr = get_next_line(open_file);
+	/*tr = get_next_line(open_file);
 	printf("// %s  ", tr);
 	free (tr);
 	tr = get_next_line(open_file);
 	printf("// %s ", tr);
-	free (tr);
+	free (tr);*/
 	return (0);
 }
 /*int main() 

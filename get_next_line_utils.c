@@ -6,7 +6,7 @@
 /*   By: monmunoz <monmunoz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/16 13:44:55 by monmunoz          #+#    #+#             */
-/*   Updated: 2024/07/07 20:44:44 by monmunoz         ###   ########.fr       */
+/*   Updated: 2024/07/10 19:23:59 by monmunoz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,26 +40,19 @@ char	*ft_strjoin(char *s1, const char *s2, int size)
 	return ((char *)s3);
 }
 
-int	ft_strchr(char *s, int c)
+int	ft_position(char *s, char c)
 {
 	int	i;
 
 	i = 0;
-	while (s[i] != '\0')
+	while (s[i] != 0)
 	{
-		if (s[i] == (char)c)
-			return (i); // de esta manera me retorna el contador, no el puntero
+		if (s[i] == c)
+			return (i);
 		i++;
 	}
-	return (NULL);
+	return (-1);
 }
+// "i" position of "\n"
+// return -1 por si en la posicion zero hay \n
 
-/*size_t	ft_strlen(char *s)
-{
-	size_t	len;
-
-	len = 0;
-	while (s[len])
-		len++;
-	return (len);
-}*/
