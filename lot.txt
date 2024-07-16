@@ -4,7 +4,8 @@ Vestibulum dictum leo varius urna vulputate iaculis. Vestibulum imperdiet consec
 Nam auctor ut arcu sit amet molestie. Sed sed tincidunt nisl, at vestibulum ex. Nulla rhoncus, mi non eleifend bibendum, sem dui faucibus odio, in accumsan dui neque sit amet dolor. Phasellus facilisis purus purus, sed commodo urna finibus non.
 Fusce ultricies accumsan lorem ut ultrices. Suspendisse dictum iaculis ipsum, et condimentum orci condimentum ac. Nunc vestibulum lorem sed magna convallis porta. Curabitur eu dignissim nibh, sed efficitur lacus.
 Maecenas efficitur nisi quis tortor venenatis, at pellentesque nibh facilisis. Vestibulum augue dolor, tincidunt ut ullamcorper tempor, consectetur id felis. Pellentesque ut tellus blandit, tincidunt nibh ut, efficitur est.
-Mauris commodo ultrices vestibulum. Nulla at magna id odio vehicula semper. Maecenas et consequat magna, eget consectetur neque. Maecenas tristique lacus in nulla posuere, ac dapibus urna hendrerit. Mauris sed tellus sapien. Fusce pulvinar scelerisque augue, ut venenatis leo porta non. Donec non ligula id est rutrum auctor vitae sed odio
+Mauris
+commodo ultrices vestibulum. Nulla at magna id odio vehicula semper. Maecenas et consequat magna, eget consectetur neque. Maecenas tristique lacus in nulla posuere, ac dapibus urna hendrerit. Mauris sed tellus sapien. Fusce pulvinar scelerisque augue, ut venenatis leo porta non. Donec non ligula id est rutrum auctor vitae sed odio
 Morbi vitae aliquam magna. Cras vehicula, dui sed suscipit iaculis, mauris libero aliquet eros, at egestas risus enim a urna.
 Morbi porttitor tortor erat, et cursus velit ullamcorper finibus. 
 Sed semper lacus dolor, nec tristique purus sagittis et.
@@ -17,22 +18,37 @@ Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac tu
 
 
 
-char *strchr(const char *p, int ch)
-{
-	char c;
 
-	c = ch;
-	for (;; ++p) {
-		if (*p == c)
-			return ((char *)p);
-		if (*p == '\0')
-			return (NULL);
+manejo de v_est
+
+char	*get_next_line(int fd)
+{
+	char		*buf;
+	char		*line;
+	char		*v_est;
+	static char	*s3;
+	int			num;
+	int			length;
+
+
+	v_est = ft_substr(buf, (count + 1), read_file);
+	length = ((ft_strlen(buf) + ft_strlen(v_est)) + 1);
+	s3 = (char *)malloc (length * sizeof(char));
+	if (!s3)
+		return (NULL);
+	s3 = ft_strcat(s3, buf);
+	s3 = ft_strcat(s3, v_est);
+	if (fd < 0 || BUFFER_SIZE <= 0 || BUFFER_SIZE >= INT_MAX)
+		return (NULL);
+	buf = (char *)malloc((BUFFER_SIZE + 1) * sizeof(char));
+	if (!buf)
+		return (NULL);
+	num = num_read (fd, buf);
+	if (num == 0)
+	{
+		free (buf);
+		return (NULL);
 	}
+	line = new_line(buf, num, fd);
+	return (line);
 }
-c = ch;
-	for (;; ++p) {
-		if (*p == c)
-			return ((char *)p);
-		if (*p == '\0')
-			return (NULL);
-	}

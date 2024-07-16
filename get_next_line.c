@@ -6,7 +6,7 @@
 /*   By: monmunoz <monmunoz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/16 12:27:10 by monmunoz          #+#    #+#             */
-/*   Updated: 2024/07/10 19:23:01 by monmunoz         ###   ########.fr       */
+/*   Updated: 2024/07/16 21:08:57 by monmunoz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,16 +24,13 @@ int	num_read(int fd, char *buf)
 	return (result);
 }
 
-
-// busco \n y si no, amplio buf para seguir buscando
-// y retorno buf hsta el (\n + resto)
-
+/* search for \n if not make buf bigger
+return buf to (\n + rest)
+position \n */
 char	*new_line(char *buf, size_t read_file, int fd)
 {
-	int		count;
-	size_t	temp_read_file;
-
-//quiero saber la posicion del \n
+	int				count;
+	size_t			temp_read_file;
 
 	count = ft_position(buf, '\n');
 	while (count == -1)
@@ -45,12 +42,24 @@ char	*new_line(char *buf, size_t read_file, int fd)
 		read_file += temp_read_file;
 		count = ft_position(buf, '\n');
 	}
-	printf ("\nCo %s , %d \n", buf, read_file);
 	return (buf);
 }
 
-//groing the buffer size
+int	ft_position(char *s, char c)
+{
+	int	i;
 
+	i = 0;
+	while (s[i] != 0)
+	{
+		if (s[i] == c)
+			return (i);
+		i++;
+	}
+	return (-1);
+}
+
+//increasing the buffer size
 char	*ft_buffer(char *buf, size_t read_file)
 {
 	char	*temp;
@@ -58,7 +67,7 @@ char	*ft_buffer(char *buf, size_t read_file)
 
 	i = 0;
 	temp = (char *)malloc((BUFFER_SIZE + read_file + 1) * sizeof(char));
-	while (!buf[i])
+	while (buf[i])
 	{
 		temp[i] = buf[i];
 		i++;
@@ -72,7 +81,6 @@ char	*get_next_line(int fd)
 {
 	char		*buf;
 	char		*line;
-	static char	*v_est;
 	int			num;
 
 	if (fd < 0 || BUFFER_SIZE <= 0 || BUFFER_SIZE >= INT_MAX)
@@ -89,9 +97,3 @@ char	*get_next_line(int fd)
 	line = new_line(buf, num, fd);
 	return (line);
 }
-
-
-
-
-	//queda crear una funcion que guarde por un lado hasta \n
-	// y por otro, el resto en v_est

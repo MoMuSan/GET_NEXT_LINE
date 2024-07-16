@@ -6,7 +6,7 @@
 /*   By: monmunoz <monmunoz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/16 13:45:19 by monmunoz          #+#    #+#             */
-/*   Updated: 2024/07/10 19:24:09 by monmunoz         ###   ########.fr       */
+/*   Updated: 2024/07/16 18:46:11 by monmunoz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,10 +26,12 @@
 
 char			*get_next_line(int fd);
 char			*new_line(char *buf, size_t read_file, int fd);
-char			*ft_strchr(char *s, int c);
+int				num_read(int fd, char *buf);
 int				ft_position(char *s, char c);
 char			*ft_buffer(char *buf, size_t read_file);
-//size_t			ft_strlen(char *s);
-//static char	    *ft_strcat(char *dest, const char *src);
-//char			*ft_strjoin(char *s1, const char *s2, int size);
+size_t			ft_strlen(char *s);
+char			*ft_substr(char *s, int start, size_t len);
+char			*ft_strdup(char *s1);
+size_t			ft_strlcpy(char *dst, char *src, size_t dstsize);
+char			*ft_strcat(char *dest, char *src);
 #endif
