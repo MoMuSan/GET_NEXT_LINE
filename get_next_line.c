@@ -6,13 +6,12 @@
 /*   By: monmunoz <monmunoz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/16 12:27:10 by monmunoz          #+#    #+#             */
-/*   Updated: 2024/07/16 21:08:57 by monmunoz         ###   ########.fr       */
+/*   Updated: 2024/07/21 20:14:25 by monmunoz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
 
-//bytes to read
 int	num_read(int fd, char *buf)
 {
 	int			result;
@@ -24,9 +23,6 @@ int	num_read(int fd, char *buf)
 	return (result);
 }
 
-/* search for \n if not make buf bigger
-return buf to (\n + rest)
-position \n */
 char	*new_line(char *buf, size_t read_file, int fd)
 {
 	int				count;
@@ -59,7 +55,6 @@ int	ft_position(char *s, char c)
 	return (-1);
 }
 
-//increasing the buffer size
 char	*ft_buffer(char *buf, size_t read_file)
 {
 	char	*temp;

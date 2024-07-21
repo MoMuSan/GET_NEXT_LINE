@@ -6,7 +6,7 @@
 /*   By: monmunoz <monmunoz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/16 13:44:55 by monmunoz          #+#    #+#             */
-/*   Updated: 2024/07/16 18:51:56 by monmunoz         ###   ########.fr       */
+/*   Updated: 2024/07/18 17:18:12 by monmunoz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,7 +87,7 @@ size_t	ft_strlcpy(char *dst, char *src, size_t dstsize)
 	return (i);
 }
 
-char	*ft_strcat(char *dest, char *src)
+/*char	*ft_strcat(char *dest, char *src)
 {
 	int	i;
 	int	j;
@@ -105,4 +105,4 @@ char	*ft_strcat(char *dest, char *src)
 	}
 	dest[i + j] = '\0';
 	return (dest);
-}
+}*/
