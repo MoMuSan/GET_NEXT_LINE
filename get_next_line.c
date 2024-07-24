@@ -6,7 +6,7 @@
 /*   By: monmunoz <monmunoz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/16 12:27:10 by monmunoz          #+#    #+#             */
-/*   Updated: 2024/07/21 20:14:25 by monmunoz         ###   ########.fr       */
+/*   Updated: 2024/07/24 19:05:14 by monmunoz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,23 +72,29 @@ char	*ft_buffer(char *buf, size_t read_file)
 	return (temp);
 }
 
+//NO TOCAR//
 char	*get_next_line(int fd)
 {
-	char		*buf;
-	char		*line;
-	int			num;
+	char			*buf;
+	char			*line;
+	int				num;
+	static char		*v_est;
 
 	if (fd < 0 || BUFFER_SIZE <= 0 || BUFFER_SIZE >= INT_MAX)
-		return (NULL);
-	buf = (char *)malloc((BUFFER_SIZE + 1) * sizeof(char));
-	if (!buf)
-		return (NULL);
-	num = num_read (fd, buf);
-	if (num == 0)
+		return (0);
+	if (!v_est)
+		if (ft_check(&buf, &num, fd) == 0)
+			return (0);
+	if (v_est)
 	{
-		free (buf);
-		return (NULL);
+		num = (int)ft_strlen(v_est);
+		buf = v_est;
 	}
 	line = new_line(buf, num, fd);
-	return (line);
+	v_est = ft_substr(line, (ft_position(line, '\n') + 1),
+			ft_strlen(line) - ft_position(line, '\n'));
+	buf = ft_substr(line, 0, (ft_position(line, '\n')));
+	free (line);
+	return (buf);
 }
+//tope de líneas//

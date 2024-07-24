@@ -6,7 +6,7 @@
 /*   By: monmunoz <monmunoz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/16 13:44:55 by monmunoz          #+#    #+#             */
-/*   Updated: 2024/07/18 17:18:12 by monmunoz         ###   ########.fr       */
+/*   Updated: 2024/07/24 19:05:46 by monmunoz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,22 +87,16 @@ size_t	ft_strlcpy(char *dst, char *src, size_t dstsize)
 	return (i);
 }
 
-/*char	*ft_strcat(char *dest, char *src)
+int	ft_check(char **buf, int *num, int fd)
 {
-	int	i;
-	int	j;
-
-	i = 0;
-	j = 0;
-	while (dest[i] != '\0')
+	*buf = (char *)malloc((BUFFER_SIZE + 1) * sizeof(char));
+	if (!*buf)
+		return (0);
+	*num = num_read (fd, *buf);
+	if (*num == 0)
 	{
-		i++;
+		free (*buf);
+		return (0);
 	}
-	while (src[j] != '\0')
-	{
-		dest[i + j] = src[j];
-		j++;
-	}
-	dest[i + j] = '\0';
-	return (dest);
-}*/
+	return (1);
+}
