@@ -6,7 +6,7 @@
 /*   By: monmunoz <monmunoz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/26 12:14:31 by monmunoz          #+#    #+#             */
-/*   Updated: 2024/07/21 20:21:54 by monmunoz         ###   ########.fr       */
+/*   Updated: 2024/07/25 17:24:12 by monmunoz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,13 +44,19 @@ int	main(void)
 {
 	int		open_file;
 	char	*tr;
+    int     i;
 
-	open_file = open ("lot.txt", O_RDONLY);
-	tr = get_next_line(open_file);
-	printf("%s ", tr);
-	free (tr);
-	printf("\n --- \n");
-	tr = get_next_line(open_file);
+    i = 0;
+	open_file = open ("test.txt", O_RDONLY);
+    while (i < 10)
+	{
+        tr = get_next_line(open_file);
+	    printf("%s ", tr);
+	    free (tr);
+	    printf("\n%i --- \n", i);
+        i++;
+    }
+	/*tr = get_next_line(open_file);
 	printf("%s  ", tr);
 	printf("\n --- \n");
 	free (tr);
@@ -58,6 +64,6 @@ int	main(void)
 	printf("%s ", tr);
 	free (tr);
 	printf("\n --- \n");
-	close (open_file);
+	close (open_file);*/
 	return (0);
 }

@@ -6,20 +6,19 @@
 /*   By: monmunoz <monmunoz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/16 13:44:55 by monmunoz          #+#    #+#             */
-/*   Updated: 2024/07/24 19:05:46 by monmunoz         ###   ########.fr       */
+/*   Updated: 2024/07/25 17:59:30 by monmunoz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
-
-// "i" position of "\n"
-// return -1 por si en la posicion zero hay \n
 
 size_t	ft_strlen(char *str)
 {
 	size_t	i;
 
 	i = 0;
+	if (!str)
+		return (0);
 	while (str[i] != '\0')
 		i++;
 	return (i);
@@ -96,6 +95,7 @@ int	ft_check(char **buf, int *num, int fd)
 	if (*num == 0)
 	{
 		free (*buf);
+		*buf = NULL;
 		return (0);
 	}
 	return (1);
