@@ -6,7 +6,7 @@
 /*   By: monmunoz <monmunoz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/16 13:45:19 by monmunoz          #+#    #+#             */
-/*   Updated: 2024/07/24 19:06:09 by monmunoz         ###   ########.fr       */
+/*   Updated: 2024/07/30 18:33:33 by monmunoz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,4 +34,5 @@ char			*ft_substr(char *s, int start, size_t len);
 char			*ft_strdup(char *s1);
 size_t			ft_strlcpy(char *dst, char *src, size_t dstsize);
 int				ft_check(char **buf, int *num, int fd);
+void			re_check(char **v_est, char *line, char **buf);
 #endif

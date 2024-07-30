@@ -6,7 +6,7 @@
 /*   By: monmunoz <monmunoz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/16 13:44:55 by monmunoz          #+#    #+#             */
-/*   Updated: 2024/07/25 17:59:30 by monmunoz         ###   ########.fr       */
+/*   Updated: 2024/07/30 19:14:29 by monmunoz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,36 +54,22 @@ char	*ft_substr(char *s, int start, size_t len)
 
 char	*ft_strdup(char *s1)
 {
-	char	*copy;
-	size_t	len;
+	int			i;
+	char		*copy;
+	size_t		len;
 
+	i = 0;
 	len = ft_strlen(s1) + 1;
 	copy = malloc(len);
 	if (!copy)
 		return (NULL);
-	ft_strlcpy(copy, s1, len);
+	while (s1[i] != '\0')
+	{
+		copy[i] = s1[i];
+		i++;
+	}
+	copy[i] = '\0';
 	return (copy);
-}
-
-size_t	ft_strlcpy(char *dst, char *src, size_t dstsize)
-{
-	size_t	i;
-
-	i = 0;
-	while (i + 1 < dstsize && src[i] != '\0')
-	{
-		dst[i] = src[i];
-		i++;
-	}
-	if (i < dstsize)
-	{
-		dst[i] = '\0';
-	}
-	while (src[i] != '\0')
-	{
-		i++;
-	}
-	return (i);
 }
 
 int	ft_check(char **buf, int *num, int fd)
@@ -99,4 +85,24 @@ int	ft_check(char **buf, int *num, int fd)
 		return (0);
 	}
 	return (1);
+}
+
+void	re_check(char **v_est, char *line, char **buf)
+{
+	size_t	size;
+
+	size = ft_strlen(line) - (size_t) ft_position(line, '\n');
+	if (size <= 1)
+	{
+		*v_est = 0;
+		return ;
+	}
+	*v_est = ft_substr(line, (ft_position(line, '\n') + 1), (size + 1));
+	if (ft_position(line, '\n') == -1)
+	{
+		free(*buf);
+		*buf = ft_strdup(*v_est);
+		free(*v_est);
+		*v_est = NULL;
+	}
 }
