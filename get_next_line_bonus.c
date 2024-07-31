@@ -6,7 +6,7 @@
 /*   By: monmunoz <monmunoz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/16 12:27:10 by monmunoz          #+#    #+#             */
-/*   Updated: 2024/07/31 23:27:48 by monmunoz         ###   ########.fr       */
+/*   Updated: 2024/07/31 23:55:13 by monmunoz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,15 +87,7 @@ char	*get_next_line(int fd)
 		buf = v_est;
 	line = new_line(buf, ((int)ft_strlen(buf)), fd);
 	buf = ft_substr(line, 0, (ft_position(line, '\n')) + 1);
-	v_est = ft_substr(line, (ft_position(line, '\n') + 1),
-			ft_strlen(line) + 1 - ft_position(line, '\n'));
-	if (ft_position(line, '\n') == -1)
-	{
-		free(buf);
-		buf = ft_strdup(v_est);
-		free(v_est);
-		v_est = NULL;
-	}
+	re_check (&v_est, line, &buf);
 	free (line);
 	return (buf);
 }
