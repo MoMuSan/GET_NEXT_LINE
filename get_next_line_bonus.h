@@ -6,7 +6,7 @@
 /*   By: monmunoz <monmunoz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/16 13:45:19 by monmunoz          #+#    #+#             */
-/*   Updated: 2024/07/31 23:55:47 by monmunoz         ###   ########.fr       */
+/*   Updated: 2024/08/01 00:18:37 by monmunoz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 # define GET_NEXT_LINE_BONUS_H
 # include <stdio.h>
 # include <stdlib.h>
+# include <unistd.h>
 # include <fcntl.h>
 
 # ifndef BUFFER_SIZE
