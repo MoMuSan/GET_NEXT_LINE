@@ -6,11 +6,11 @@
 /*   By: monmunoz <monmunoz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/16 12:27:10 by monmunoz          #+#    #+#             */
-/*   Updated: 2024/07/31 23:55:13 by monmunoz         ###   ########.fr       */
+/*   Updated: 2024/08/01 13:22:00 by monmunoz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "get_next_line.h"
+#include "get_next_line_bonus.h"
 
 int	num_read(int fd, char *buf)
 {
@@ -72,7 +72,7 @@ char	*ft_buffer(char *buf, size_t read_file)
 	return (temp);
 }
 
-char	*get_next_line(int fd)
+char	*get_next_line_bonus(int fd)
 {
 	char			*buf;
 	char			*line;
