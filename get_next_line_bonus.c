@@ -72,7 +72,7 @@ char	*ft_buffer(char *buf, size_t read_file)
 	return (temp);
 }
 
-char	*get_next_line_bonus(int fd)
+char	*get_next_line(int fd)
 {
 	char			*buf;
 	char			*line;
