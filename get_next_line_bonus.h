@@ -24,7 +24,7 @@
 #  define INT_MAX 2147483647
 # endif
 
-char			*get_next_line_bonus(int fd);
+char			*get_next_line(int fd);
 char			*new_line(char *buf, size_t read_file, int fd);
 int				num_read(int fd, char *buf);
 int				ft_position(char *s, char c);
