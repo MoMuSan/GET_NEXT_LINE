@@ -6,7 +6,7 @@
 /*   By: monmunoz <monmunoz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/16 12:27:10 by monmunoz          #+#    #+#             */
-/*   Updated: 2024/08/01 13:22:00 by monmunoz         ###   ########.fr       */
+/*   Updated: 2024/10/13 20:02:26 by monmunoz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,22 +72,22 @@ char	*ft_buffer(char *buf, size_t read_file)
 	return (temp);
 }
 
-char	*get_next_line_bonus(int fd)
+char	*get_next_line(int fd)
 {
 	char			*buf;
 	char			*line;
 	int				num;
-	static char		*v_est;
+	static char		*v_est[4096];
 
 	if (fd < 0 || BUFFER_SIZE <= 0 || BUFFER_SIZE >= INT_MAX)
 		return (0);
-	if (!v_est && ft_check(&buf, &num, fd) == 0)
+	if (!v_est[fd] && ft_check(&buf, &num, fd) == 0)
 		return (0);
-	if (v_est)
-		buf = v_est;
+	if (v_est[fd])
+		buf = v_est[fd];
 	line = new_line(buf, ((int)ft_strlen(buf)), fd);
 	buf = ft_substr(line, 0, (ft_position(line, '\n')) + 1);
-	re_check (&v_est, line, &buf);
+	re_check (&v_est[fd], line, &buf);
 	free (line);
 	return (buf);
 }

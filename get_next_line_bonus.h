@@ -6,7 +6,7 @@
 /*   By: monmunoz <monmunoz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/16 13:45:19 by monmunoz          #+#    #+#             */
-/*   Updated: 2024/08/01 13:21:35 by monmunoz         ###   ########.fr       */
+/*   Updated: 2024/10/13 19:59:42 by monmunoz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@
 #  define INT_MAX 2147483647
 # endif
 
-char			*get_next_line_bonus(int fd);
+char			*get_next_line(int fd);
 char			*new_line(char *buf, size_t read_file, int fd);
 int				num_read(int fd, char *buf);
 int				ft_position(char *s, char c);
